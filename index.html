@@ -548,10 +548,12 @@
 <!-- ══════════════ CALENDAR ══════════════ -->
 <section class="wrap" id="calendar">
   <div class="eyebrow">📅 SCHEDULE</div>
-  <h2 class="section-title">출발 가능일, 날짜를 눌러보세요</h2>
-  <p class="section-sub">상품을 고르고 날짜를 누르면 가격과 예약 버튼이 바로 떠요. 아래에는 출발 공항별 항공 스케줄도 함께 확인하실 수 있어요.</p>
+  <h2 class="section-title">출발 일정 안내</h2>
+  <p class="section-sub">날짜별 가격 달력은 준비 중이에요. 아래에서 출발 공항별 항공 스케줄을 먼저 확인하실 수 있어요.</p>
 
   <div class="calendar-panel">
+    <!-- ✏️ 날짜별 가격이 확정되면 아래 style="display:none"만 지워서 다시 켜세요 -->
+    <div style="display:none">
     <div class="cal-head">
       <h3>📅 날짜별 출발 가격 달력</h3>
     </div>
@@ -603,7 +605,7 @@
     <!-- 날짜를 고르지 않아도 항상 보이는 예약 버튼 -->
     <a href="#" id="calAlwaysReserveBtn" target="_blank" class="btn block" style="margin-top:18px;">예약하러 가기 →</a>
     <p style="text-align:center;font-size:13px;color:rgba(255,255,255,0.45);margin-top:10px;">모든 예약과 결제는 안내드리는 예약 페이지에서 진행돼요.</p>
-
+    </div>
     <!-- 항공 스케줄 (캘린더 안에 통합) -->
     <div class="flight-in-cal">
       <h3 class="flight-in-cal-title">✈️ 출발 공항별 항공 스케줄</h3>
