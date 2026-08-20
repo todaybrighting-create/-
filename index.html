@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>다낭 · 그랜드머큐어 패키지 & 에어텔 | 늘찬맘</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ══════════════════════════════════════════════════════════════
+  ✏️  가현님, 다음 캠페인 때 여기부터 고치시면 돼요!
+  1) 이 파일 안에서 "✏️ 수정" 표시가 붙은 곳들이 상품 내용이에요.
+  2) 색상/폰트/구조는 안 건드리셔도 다음 상품에 그대로 재사용 가능해요.
+  3) 캘린더 제외일(안 되는 날짜)은 파일 맨 아래 JS의 EXCLUDED_DATES 배열에 추가하세요.
+═══════════════════════════════════════════════════════════════ -->
+
+<style>
+  :root{
+    --ocean:#0F4C5C;
+    --ocean-deep:#0A3541;
+    --sea:#1B7A8C;
+    --coral:#FF6F4C;
+    --coral-deep:#E8562F;
+    --sand:#F6EEE1;
+    --cream:#FFFCF7;
+    --ink:#1B2B30;
+    --ink-soft:#4C5F65;
+    --gold:#E8B75A;
+    --line:#E4DACB;
+    --radius:18px;
+    --shadow:0 12px 32px -12px rgba(15,76,92,0.28);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Noto Sans KR',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Gowun Batang',serif;
+    color:var(--ocean-deep);
+    margin:0;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
+  section{padding:64px 0;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13px;font-weight:700;letter-spacing:.06em;
+    color:var(--sea);background:rgba(27,122,140,0.09);
+    padding:6px 14px;border-radius:999px;margin-bottom:14px;
+  }
+  .section-title{font-size:clamp(24px,4vw,34px);margin-bottom:8px;}
+  .section-sub{color:var(--ink-soft);font-size:15px;margin-bottom:32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,252,247,0.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{font-family:'Gowun Batang',serif;font-weight:700;font-size:18px;color:var(--ocean-deep);white-space:nowrap;}
+  .brand small{display:block;font-family:'Noto Sans KR';font-size:10px;font-weight:500;color:var(--ink-soft);letter-spacing:.04em;}
+  .navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;}
+  .navlinks::-webkit-scrollbar{display:none;}
+  .navlinks a{
+    font-size:13px;font-weight:600;color:var(--ink-soft);
+    padding:8px 12px;border-radius:8px;white-space:nowrap;text-decoration:none;
+  }
+  .navlinks a:hover{background:var(--sand);color:var(--ocean-deep);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(180deg,var(--ocean-deep) 0%,var(--ocean) 60%,var(--sea) 100%);
+    color:#fff;padding:56px 0 40px;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:60px;
+    background:var(--cream);
+    clip-path:polygon(0 60%,5% 55%,10% 62%,15% 52%,20% 60%,25% 50%,30% 58%,35% 48%,40% 56%,45% 46%,50% 54%,55% 44%,60% 52%,65% 42%,70% 50%,75% 40%,80% 48%,85% 38%,90% 46%,95% 40%,100% 46%,100% 100%,0 100%);
+  }
+  .hero-top{position:relative;z-index:2;}
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    background:rgba(255,255,255,0.14);padding:7px 16px;border-radius:999px;margin-bottom:18px;
+  }
+  .hero h1{color:#fff;font-size:clamp(30px,5.4vw,46px);line-height:1.28;margin-bottom:14px;}
+  .hero h1 em{font-style:normal;color:var(--gold);}
+  .hero p.lead{color:rgba(255,255,255,0.82);font-size:16px;max-width:520px;margin-bottom:8px;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;font-size:13.5px;color:rgba(255,255,255,0.78);}
+  .hero-meta span{display:flex;align-items:center;gap:6px;}
+
+  /* Ticket cards */
+  .tickets{
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px;position:relative;z-index:2;
+  }
+  @media (max-width:720px){.tickets{grid-template-columns:1fr;}}
+  .ticket{
+    background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+    position:relative;overflow:hidden;display:flex;flex-direction:column;
+    border:1px solid rgba(15,76,92,0.06);
+  }
+  .ticket-badge{
+    position:absolute;top:14px;right:14px;background:var(--coral);color:#fff;
+    font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;
+  }
+  .ticket-body{padding:22px 22px 18px;flex:1;}
+  .ticket-kicker{font-size:12px;font-weight:700;color:var(--sea);letter-spacing:.04em;margin-bottom:6px;}
+  .ticket-name{font-family:'Gowun Batang',serif;font-size:19px;color:var(--ocean-deep);margin-bottom:10px;line-height:1.4;}
+  .ticket-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+  .ticket-tags span{font-size:11.5px;background:var(--sand);color:var(--ink-soft);padding:4px 9px;border-radius:6px;font-weight:600;}
+  .ticket-price{
+    border-top:1px dashed var(--line);margin-top:2px;padding-top:14px;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .ticket-price .from{font-size:12px;color:var(--ink-soft);}
+  .ticket-price .strike{font-size:13px;color:#B5A78F;text-decoration:line-through;}
+  .ticket-price .now{font-family:'Gowun Batang',serif;font-size:26px;color:var(--coral-deep);font-weight:700;}
+  .ticket-price .now sup{font-size:13px;font-weight:500;}
+  .ticket-perforation{
+    height:0;border-top:2px dashed var(--line);position:relative;
+  }
+  .ticket-perforation::before,.ticket-perforation::after{
+    content:"";position:absolute;top:-9px;width:18px;height:18px;border-radius:50%;
+    background:var(--cream);
+  }
+  .ticket-perforation::before{left:-9px;}
+  .ticket-perforation::after{right:-9px;}
+  .ticket-cta{
+    padding:14px 22px;background:var(--sand);font-size:13px;color:var(--ink-soft);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .ticket-cta b{color:var(--ocean-deep);}
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--coral);color:#fff;font-weight:700;font-size:15px;
+    padding:14px 28px;border-radius:999px;text-decoration:none;border:none;cursor:pointer;
+    box-shadow:0 10px 24px -8px rgba(255,111,76,0.55);
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.55);box-shadow:none;}
+  .btn.block{width:100%;}
+  .cta-row{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;position:relative;z-index:2;}
+
+  /* ---------- 3x3 concept ---------- */
+  .concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:720px){.concept-grid{grid-template-columns:1fr;}}
+  .concept-card{
+    background:#fff;border-radius:14px;padding:22px;border:1px solid var(--line);
+    box-shadow:0 6px 18px -12px rgba(15,76,92,0.18);
+  }
+  .concept-card .num{font-family:'Gowun Batang',serif;font-size:13px;color:var(--sea);font-weight:700;margin-bottom:8px;letter-spacing:.06em;}
+  .concept-card h3{font-size:17px;margin-bottom:8px;}
+  .concept-card p{font-size:13.6px;color:var(--ink-soft);margin:0;}
+
+  /* ---------- comparison table ---------- */
+  .compare-scroll{overflow-x:auto;border-radius:16px;box-shadow:var(--shadow);}
+  table.compare{width:100%;border-collapse:collapse;background:#fff;min-width:640px;}
+  table.compare th,table.compare td{padding:14px 16px;text-align:left;font-size:13.6px;border-bottom:1px solid var(--line);}
+  table.compare thead th{
+    background:var(--ocean-deep);color:#fff;font-size:13px;font-weight:700;
+    position:sticky;top:0;
+  }
+  table.compare thead th:first-child{border-top-left-radius:16px;}
+  table.compare thead th:last-child{border-top-right-radius:16px;}
+  table.compare tbody tr:last-child td{border-bottom:none;}
+  table.compare tbody tr:hover{background:var(--sand);}
+  table.compare td.label{color:var(--ink-soft);font-weight:600;white-space:nowrap;}
+  table.compare td.price{color:var(--coral-deep);font-weight:800;font-family:'Gowun Batang',serif;font-size:15px;}
+  table.compare td.price small{display:block;color:#B5A78F;font-weight:500;text-decoration:line-through;font-family:'Noto Sans KR';font-size:11.5px;}
+
+  /* ---------- calendar (signature element) ---------- */
+  .calendar-panel{
+    background:var(--ocean-deep);border-radius:22px;padding:28px 24px;color:#fff;
+    box-shadow:var(--shadow);position:relative;
+  }
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+  .cal-head h3{color:#fff;font-size:19px;}
+
+  /* product tabs */
+  .cal-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;}
+  @media (max-width:640px){.cal-tabs{grid-template-columns:1fr;}}
+  .cal-tab-btn{
+    background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.8);
+    font-size:13px;font-weight:700;padding:11px 12px;border-radius:12px;cursor:pointer;transition:.15s;
+    text-align:center;
+  }
+  .cal-tab-btn.active{background:var(--gold);color:var(--ocean-deep);border-color:var(--gold);}
+
+  /* toolbar: product title + month nav */
+  .cal-toolbar{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
+  .cal-product-title{color:#fff;font-size:17px;margin:0 0 4px;font-family:'Gowun Batang',serif;}
+  .cal-product-meta{color:rgba(255,255,255,0.55);font-size:12px;margin:0;}
+  .cal-monthnav{display:flex;align-items:center;gap:8px;}
+  .cal-monthnav button{
+    width:34px;height:34px;border-radius:9px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);
+    color:#fff;font-size:15px;cursor:pointer;
+  }
+  .cal-monthnav select{
+    background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;
+    font-weight:700;font-size:13px;padding:8px 12px;border-radius:9px;
+  }
+  .cal-monthnav select option{color:#1B2B30;}
+
+  .cal-dow-row{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px;}
+  .cal-dow-row span{text-align:center;font-size:11.5px;color:rgba(255,255,255,0.5);font-weight:700;}
+  .cal-dow-row .dow-sun{color:#FF9E8A;}
+  .cal-dow-row .dow-sat{color:#8FC7E0;}
+
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .cal-day{
+    min-height:74px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-size:12.5px;font-weight:600;cursor:default;color:rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.03);padding:6px 2px;text-align:center;
+  }
+  @media (max-width:640px){.cal-day{min-height:58px;font-size:11px;}}
+  .cal-day.pad{visibility:hidden;}
+  .cal-day.avail{
+    color:#fff;background:rgba(255,255,255,0.09);cursor:pointer;border:1px solid transparent;
+  }
+  .cal-day.avail:hover{background:var(--sea);}
+  .cal-day.avail.selected{background:var(--gold);color:var(--ocean-deep);border-color:var(--gold);}
+  .cal-day .d-num{font-weight:700;margin-bottom:2px;}
+  .cal-day .d-strike{font-size:9.5px;color:rgba(255,255,255,0.4);text-decoration:line-through;}
+  .cal-day.avail.selected .d-strike{color:rgba(15,76,92,0.5);}
+  .cal-day .d-sale{font-size:11px;font-weight:800;color:var(--gold);}
+  .cal-day.avail.selected .d-sale{color:var(--coral-deep);}
+  .cal-day.excluded{
+    color:rgba(255,255,255,0.22);text-decoration:line-through;background:rgba(255,111,76,0.08);
+  }
+  .cal-legend{display:flex;gap:18px;margin:14px 0 4px;font-size:12px;color:rgba(255,255,255,0.6);flex-wrap:wrap;}
+  .cal-legend span{display:flex;align-items:center;gap:6px;}
+  .legend-swatch{width:11px;height:11px;border-radius:3px;}
+
+  /* reservation panel (appears after picking a date) */
+  .reservation-panel{
+    margin-top:18px;background:rgba(255,255,255,0.08);border:1px solid rgba(232,183,90,0.4);
+    border-radius:16px;padding:20px 22px;
+  }
+  .rp-label{font-size:11.5px;color:var(--gold);font-weight:700;margin:0 0 4px;}
+  .reservation-panel h4{color:#fff;font-size:19px;margin:0 0 4px;font-family:'Gowun Batang',serif;}
+  .reservation-panel .rp-top p{color:rgba(255,255,255,0.65);font-size:12.5px;margin:0;}
+  .rp-price{display:flex;align-items:baseline;gap:8px;margin-top:10px;}
+  .rp-price .strike{font-size:12.5px;color:rgba(255,255,255,0.4);text-decoration:line-through;}
+  .rp-price .now{font-size:22px;font-weight:800;color:var(--gold);font-family:'Gowun Batang',serif;}
+  .rp-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .rp-actions .btn{flex:1;min-width:140px;}
+  .btn.ghost-dark{
+    background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.22);box-shadow:none;
+  }
+
+  /* flight schedule inside calendar panel */
+  .flight-in-cal{margin-top:30px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.14);}
+  .flight-in-cal-title{color:#fff;font-size:17px;margin-bottom:4px;}
+  .flight-in-cal-sub{color:rgba(255,255,255,0.55);font-size:12.5px;margin:0 0 16px;}
+  .flight-block{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px 18px;margin-bottom:10px;}
+  .flight-block-head{color:var(--gold);font-weight:700;font-size:13.5px;margin-bottom:8px;}
+  .flight-block-body{color:rgba(255,255,255,0.78);font-size:12.8px;line-height:1.75;white-space:pre-line;}
+  .flight-in-cal-note{font-size:11.5px;color:rgba(255,255,255,0.45);margin-top:12px;}
+
+  /* ---------- itinerary tabs ---------- */
+  .tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+  .tab-btn{
+    background:#fff;border:1.5px solid var(--line);color:var(--ink-soft);font-weight:700;font-size:13.5px;
+    padding:10px 18px;border-radius:999px;cursor:pointer;
+  }
+  .tab-btn.active{background:var(--ocean-deep);border-color:var(--ocean-deep);color:#fff;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .day-item{
+    display:flex;gap:16px;background:#fff;border-radius:14px;padding:18px 20px;margin-bottom:12px;
+    border:1px solid var(--line);
+  }
+  .day-num{
+    flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--sand);color:var(--ocean-deep);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Gowun Batang',serif;
+  }
+  .day-item h4{font-size:14.5px;margin:0 0 6px;color:var(--ocean-deep);}
+  .day-item .desc{font-size:13.3px;color:var(--ink-soft);white-space:pre-line;line-height:1.7;}
+  .day-item .meals{font-size:11.5px;color:var(--sea);margin-top:8px;font-weight:600;}
+
+  /* ---------- accordion ---------- */
+  .accordion-item{border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;background:#fff;}
+  .accordion-head{
+    display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;
+    font-weight:700;font-size:14.5px;color:var(--ocean-deep);
+  }
+  .accordion-head .chev{transition:transform .2s;color:var(--sea);}
+  .accordion-item.open .chev{transform:rotate(180deg);}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .accordion-body-inner{padding:0 20px 18px;font-size:13.3px;color:var(--ink-soft);white-space:pre-line;line-height:1.75;}
+  .accordion-item.always-open .accordion-head{cursor:default;}
+  .accordion-item.always-open .accordion-body{max-height:none !important;}
+
+  /* ---------- include/exclude ---------- */
+  .inex-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:720px){.inex-grid{grid-template-columns:1fr;}}
+  .inex-card{border-radius:16px;padding:22px;}
+  .inex-card.in{background:#EAF4EC;border:1px solid #CFE7D3;}
+  .inex-card.ex{background:#FBEEEA;border:1px solid #F0D6CC;}
+  .inex-card h3{font-size:15.5px;margin-bottom:12px;}
+  .inex-card ul{margin:0;padding-left:0;list-style:none;}
+  .inex-card li{font-size:13.5px;color:var(--ink-soft);padding:6px 0;display:flex;gap:8px;}
+
+  /* ---------- FAQ / notice ---------- */
+  .notice-box{background:var(--sand);border-radius:16px;padding:22px 24px;margin-bottom:14px;}
+  .notice-box h4{font-size:14px;color:var(--ocean-deep);margin-bottom:8px;display:flex;gap:8px;align-items:center;}
+  .notice-box p{font-size:13.3px;color:var(--ink-soft);margin:0;white-space:pre-line;line-height:1.75;}
+
+  /* ---------- footer cta ---------- */
+  .footer-cta{
+    background:linear-gradient(135deg,var(--ocean-deep),var(--sea));color:#fff;text-align:center;
+    border-radius:26px;padding:52px 24px;margin:0 20px 40px;
+  }
+  .footer-cta h2{color:#fff;font-size:clamp(22px,4vw,30px);margin-bottom:10px;}
+  .footer-cta p{color:rgba(255,255,255,0.8);font-size:14.5px;margin-bottom:26px;}
+  footer.site-footer{padding:28px 0 60px;text-align:center;color:#B5A78F;font-size:12px;}
+
+  @media (max-width:600px){
+    section{padding:44px 0;}
+    .concept-grid{gap:12px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav>
+  <div class="wrap">
+    <div class="brand">늘찬맘 다낭<small>DA NANG · GROUP BUY</small></div>
+    <div class="navlinks">
+      <a href="#compare">가격비교</a>
+      <a href="#calendar">출발일정</a>
+      <a href="#itinerary">일정표</a>
+      <a href="#inex">포함사항</a>
+      <a href="#notice">유의사항</a>
+      <a href="#cta">신청하기</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<header class="hero">
+  <div class="wrap hero-top">
+    <div class="hero-eyebrow">🌴 늘찬맘 전용 · 9월 오픈</div>
+    <!-- ✏️ 수정: 헤드라인 -->
+    <h1>다낭에서 만나는 <em>3×3</em><br>하루에 하나씩, 3가지 밤과 3가지 간식</h1>
+    <p class="lead">5성 그랜드머큐어 패키지부터 신라모노그램·메리어트 풀빌라 에어텔까지 — 우리 가족 스타일대로 골라보세요.</p>
+    <div class="hero-meta">
+      <span>📅 출발 2026.09.10 ~ 12.31</span>
+      <span>✈️ 인천 · 청주 · 김해 · 대구 출발</span>
+      <span>🧳 3박5일</span>
+    </div>
+
+    <div class="tickets">
+      <!-- 티켓 1: 패키지 -->
+      <div class="ticket">
+        <div class="ticket-badge">인솔자 없이 편안하게</div>
+        <div class="ticket-body">
+          <div class="ticket-kicker">PACKAGE · 그랜드머큐어 다낭</div>
+          <!-- ✏️ 수정: 상품명 -->
+          <div class="ticket-name">[늘찬맘전용] 다낭·바나힐·호이안 패키지 3박5일</div>
+          <div class="ticket-tags">
+            <span>5성 아코르 계열</span><span>가이드 동반</span><span>전일정 식사</span><span>마사지 90분</span>
+          </div>
+          <div class="ticket-price">
+            <span class="from">1인 기준</span>
+            <span class="strike">349,000원</span>
+            <span class="now">299,000<sup>원~</sup></span>
+          </div>
+        </div>
+        <div class="ticket-perforation"></div>
+        <div class="ticket-cta"><span>즉시할인 <b>5만원</b> 적용가</span><span>최소 4명↑</span></div>
+      </div>
+
+      <!-- 티켓 2: 에어텔 -->
+      <div class="ticket">
+        <div class="ticket-badge" style="background:var(--sea);">자유여행파 추천</div>
+        <div class="ticket-body">
+          <div class="ticket-kicker">AIRTEL · 신라모노그램 / 메리어트 풀빌라</div>
+          <!-- ✏️ 수정: 상품명 -->
+          <div class="ticket-name">[늘찬맘전용] 다낭 에어텔 3박5일 (2종 택1)</div>
+          <div class="ticket-tags">
+            <span>키즈클럽 무료</span><span>공항 편도픽업</span><span>풀빌라 옵션</span><span>2인부터 출발</span>
+          </div>
+          <div class="ticket-price">
+            <span class="from">신라모노그램</span>
+            <span class="strike">649,000원</span>
+            <span class="now">599,000<sup>원~</sup></span>
+          </div>
+        </div>
+        <div class="ticket-perforation"></div>
+        <div class="ticket-cta"><span>메리어트 풀빌라 <b>699,000원~</b></span><span>최소 2명↑</span></div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a href="#cta" class="btn">지금 신청하러 가기 →</a>
+      <a href="#compare" class="btn ghost">가격 비교 먼저 볼게요</a>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════ 3x3 CONCEPT ══════════════ -->
+<section class="wrap" id="concept">
+  <div class="eyebrow">✨ CONCEPT</div>
+  <h2 class="section-title">다낭에서 만나는 3×3</h2>
+  <p class="section-sub">하루에 하나씩 즐기는 3가지 밤, 그리고 매일 하나씩 만나는 3가지 다낭 간식</p>
+  <div class="concept-grid">
+    <div class="concept-card">
+      <div class="num">NIGHT 01</div>
+      <h3>🏮 호이안 야간 시티투어</h3>
+      <p>야시장 구경 + 소원등 띄우기 + 음료 1잔. 낮과는 또 다른 호이안의 밤을 걸어요.</p>
+    </div>
+    <div class="concept-card">
+      <div class="num">NIGHT 02</div>
+      <h3>🚢 한강 유람선</h3>
+      <p>유람선 위에서 즐기는 다낭의 야경. 쩐티리 다리와 드래곤 브릿지 조명이 반짝여요.</p>
+    </div>
+    <div class="concept-card">
+      <div class="num">NIGHT 03</div>
+      <h3>🌙 다낭 야시장</h3>
+      <p>현지 사람들 사이에 섞여 즐기는 활기찬 밤 분위기, 다낭 야시장 투어.</p>
+    </div>
+    <div class="concept-card">
+      <div class="num">SNACK 01</div>
+      <h3>🥭 망고 도시락</h3>
+      <p>다낭 여행의 필수 코스, 달콤한 망고 도시락으로 하루를 시작해요.</p>
+    </div>
+    <div class="concept-card">
+      <div class="num">SNACK 02</div>
+      <h3>☕ 카페 쓰어다</h3>
+      <p>베트남 대표 연유커피, 카페 쓰어다 한 잔의 여유.</p>
+    </div>
+    <div class="concept-card">
+      <div class="num">SNACK 03</div>
+      <h3>🥖 반미</h3>
+      <p>바삭한 바게트 속 가득한 로컬 반미로 즐기는 든든한 한 끼.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 가격 비교 ══════════════ -->
+<section class="wrap" id="compare">
+  <div class="eyebrow">💰 PRICE</div>
+  <h2 class="section-title">가격 안내 — 3가지 옵션 비교</h2>
+  <p class="section-sub">1인 기준 · 즉시할인 적용가</p>
+  <div class="compare-scroll">
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>그랜드머큐어 패키지</th>
+          <th>신라모노그램 에어텔</th>
+          <th>메리어트 풀빌라 에어텔</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">타입</td>
+          <td>패키지 (가이드 동반)</td>
+          <td>에어텔 (자유일정)</td>
+          <td>에어텔 (자유일정)</td>
+        </tr>
+        <tr>
+          <td class="label">가격</td>
+          <td class="price">299,000원~<small>349,000원</small></td>
+          <td class="price">599,000원~<small>649,000원</small></td>
+          <td class="price">699,000원~<small>749,000원</small></td>
+        </tr>
+        <tr>
+          <td class="label">객실 타입</td>
+          <td>수페리어룸</td>
+          <td>수페리어룸</td>
+          <td>2베드/3베드 풀빌라</td>
+        </tr>
+        <tr>
+          <td class="label">최대 인원</td>
+          <td>성인2+아동2 / 성인3+아동1</td>
+          <td>성인2+아동2 / 성인3</td>
+          <td>성인4+아동2 (2베드 기준)</td>
+        </tr>
+        <tr>
+          <td class="label">최소 출발인원</td>
+          <td>4명</td>
+          <td>2명</td>
+          <td>2명</td>
+        </tr>
+        <tr>
+          <td class="label">쇼핑</td>
+          <td>3회 포함</td>
+          <td>없음</td>
+          <td>없음</td>
+        </tr>
+        <tr>
+          <td class="label">특전</td>
+          <td>90분 전신마사지</td>
+          <td>망고빙수 (객실당1)</td>
+          <td>애프터눈티세트 (객실당1)</td>
+        </tr>
+        <tr>
+          <td class="label">체크인/아웃</td>
+          <td>14:00 / 12:00</td>
+          <td>15:00 / 12:00</td>
+          <td>15:00 / 12:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════ CALENDAR ══════════════ -->
+<section class="wrap" id="calendar">
+  <div class="eyebrow">📅 SCHEDULE</div>
+  <h2 class="section-title">출발 가능일, 날짜를 눌러보세요</h2>
+  <p class="section-sub">상품을 고르고 날짜를 누르면 가격과 예약 버튼이 바로 떠요. 아래에는 출발 공항별 항공 스케줄도 함께 확인하실 수 있어요.</p>
+
+  <div class="calendar-panel">
+    <div class="cal-head">
+      <h3>📅 날짜별 출발 가격 달력</h3>
+    </div>
+
+    <!-- 상품 탭 -->
+    <div class="cal-tabs" id="prodTabs"></div>
+
+    <!-- 상품명 + 월 선택 -->
+    <div class="cal-toolbar">
+      <div>
+        <h4 class="cal-product-title" id="calProductTitle"></h4>
+        <p class="cal-product-meta" id="calProductMeta"></p>
+      </div>
+      <div class="cal-monthnav">
+        <button type="button" id="calPrev" aria-label="이전 달">‹</button>
+        <select id="calMonthSelect"></select>
+        <button type="button" id="calNext" aria-label="다음 달">›</button>
+      </div>
+    </div>
+
+    <div class="cal-dow-row">
+      <span class="dow-sun">일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span class="dow-sat">토</span>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+
+    <div class="cal-legend">
+      <span><i class="legend-swatch" style="background:rgba(255,255,255,0.09)"></i>출발 가능 (가격 표시)</span>
+      <span>표시가는 즉시할인 5만원 적용가 · 성인 기준</span>
+    </div>
+
+    <!-- 날짜 선택 시 나타나는 예약 패널 -->
+    <div class="reservation-panel" id="reservationPanel" hidden>
+      <div class="rp-top">
+        <p class="rp-label">선택한 출발일</p>
+        <h4 id="rpDate"></h4>
+        <p id="rpProduct"></p>
+        <div class="rp-price">
+          <span class="strike" id="rpOriginal"></span>
+          <span class="now" id="rpSale"></span>
+        </div>
+      </div>
+      <div class="rp-actions">
+        <button type="button" id="rpClose" class="btn ghost-dark">다시 선택</button>
+        <!-- ✏️ 수정: 예약 링크가 생기면 아래 JS의 RESERVATION_URL 한 곳만 바꾸면 모든 날짜/버튼에 자동 적용돼요 -->
+        <a href="#" id="rpReserveBtn" target="_blank" class="btn">예약하러 가기 →</a>
+      </div>
+    </div>
+
+    <!-- 날짜를 고르지 않아도 항상 보이는 예약 버튼 -->
+    <a href="#" id="calAlwaysReserveBtn" target="_blank" class="btn block" style="margin-top:18px;">예약하러 가기 →</a>
+    <p style="text-align:center;font-size:11.5px;color:rgba(255,255,255,0.45);margin-top:10px;">모든 예약과 결제는 안내드리는 예약 페이지에서 진행돼요.</p>
+
+    <!-- 항공 스케줄 (캘린더 안에 통합) -->
+    <div class="flight-in-cal">
+      <h3 class="flight-in-cal-title">✈️ 출발 공항별 항공 스케줄</h3>
+      <p class="flight-in-cal-sub">3박5일 기준 · 약 4시간30분~5시간 소요</p>
+
+      <div class="flight-block">
+        <div class="flight-block-head">인천국제공항 출발</div>
+        <div class="flight-block-body">아시아나항공(OZ755/756) 인천 18:50 – 다낭 21:35 / 다낭 23:05 – 인천 05:55 · 기내식 포함, 위탁23KG
+
+에어서울(RS511/512) 인천 20:55 – 다낭 23:40 / 다낭 00:40 – 인천 07:15 · 기내식 포함, 위탁15KG
+
+트리니티항공 TW013/014 인천 21:35 – 다낭 00:25 / 다낭 01:25 – 인천 08:15
+트리니티항공 TW011/012 인천 19:00 – 다낭 22:20 / 다낭 23:35 – 인천 06:05 · 기내식 불포함, 위탁15KG
+
+제주항공(7C2217/2218) 인천 21:30 – 다낭 01:30 / 다낭 01:30 – 인천 08:15 · 기내식 불포함, 위탁15KG
+
+이스타항공(ZE593/594) 인천 20:35 – 다낭 11:25 / 다낭 00:25 – 인천 06:55 · 기내식 불포함, 위탁15KG
+
+진에어(LJ081/082, 에어텔 한정) 인천 20:30 – 다낭 23:15 / 다낭 00:15 – 인천 07:10 · 기내식 불포함, 위탁15KG</div>
+      </div>
+
+      <div class="flight-block">
+        <div class="flight-block-head">청주국제공항 출발</div>
+        <div class="flight-block-body">에어로케이항공(RF531/532) 청주 20:55 – 다낭 23:55 / 다낭 00:55 – 청주 07:10 · 기내식 포함, 위탁15KG
+
+트리니티항공(TW025/016) 청주 21:00 – 다낭 23:50 / 다낭 00:50 – 청주 07:35 · 기내식 불포함, 위탁15KG</div>
+      </div>
+
+      <div class="flight-block">
+        <div class="flight-block-head">김해국제공항 출발</div>
+        <div class="flight-block-body">에어부산(BX773/774) 부산 20:50 – 다낭 23:50 / 다낭 00:45 – 부산 07:20 · 위탁15KG, 기내식 편도포함
+에어부산 증편(BX7315/774) 부산 22:05 – 다낭 01:10 / 다낭 02:10 – 부산 09:05
+
+진에어(LJ111/112) 부산 21:15 – 다낭 23:55 / 다낭 01:00 – 부산 07:15 · 기내식 포함, 위탁15KG
+
+대한항공 3박4일(KE2093/2094) 부산 10:30 – 다낭 13:20 / 다낭 15:45 – 부산 22:00 · 기내식 포함, 위탁23KG
+대한항공 3박5일(KE2093/2094) 부산 22:10 – 다낭 01:00 / 다낭 03:00 – 부산 09:05
+
+비엣젯항공(VJ989/988) 부산 07:45 – 다낭 10:10 / 다낭 00:30 – 부산 06:40 · 기내식 불포함, 위탁20KG</div>
+      </div>
+
+      <div class="flight-block">
+        <div class="flight-block-head">대구국제공항 출발</div>
+        <div class="flight-block-body">티웨이항공(TW029/030) 대구 21:10 – 다낭 23:55 / 다낭 01:30 – 대구 08:15 · 기내식 불포함, 위탁15KG</div>
+      </div>
+
+      <p class="flight-in-cal-note">※ 항공시간은 출발일에 따라 변경될 수 있어요. 좌석은 사전 지정이 불가하며, 유류할증료·세금은 발권일 환율에 따라 변동될 수 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 일정표 ══════════════ -->
+<section class="wrap" id="itinerary">
+  <div class="eyebrow">🗺️ ITINERARY</div>
+  <h2 class="section-title">일정표</h2>
+  <p class="section-sub">패키지 / 에어텔 일정이 달라요 — 탭을 눌러 확인하세요.</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="pkg">패키지 (그랜드머큐어)</button>
+    <button class="tab-btn" data-tab="air">에어텔 (신라모노그램·풀빌라)</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-pkg">
+    <div class="day-item">
+      <div class="day-num">1</div>
+      <div><h4>인천/청주/부산/대구 출발 → 다낭 도착</h4>
+        <div class="desc">가이드 미팅 후 호텔로 이동</div>
+        <div class="meals">석: 기내식 불포함 (아시아나항공 포함)</div>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num">2</div>
+      <div><h4>마블마운틴 · 호이안 야간투어</h4>
+        <div class="desc">조식 후 가이드 미팅 → 마블마운틴(오행산) → 호이안 이동 → 투본강 관광 → 호이안 고대도시 관광 → 호이안 야간 시티투어(등띄우기·음료1잔·야시장) → 호텔 투숙</div>
+        <div class="meals">조: 호텔식 · 중: 한식(소불고기) · 석: 호이안 전통식</div>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num">3</div>
+      <div><h4>바나힐 테마파크 · 전신마사지</h4>
+        <div class="desc">조식 후 가이드 미팅 → 바나힐 테마파크 → 전신마사지 90분(팁불포함, 아동제외) → 선짜야시장 관광 → 호텔 투숙</div>
+        <div class="meals">조: 호텔식 · 중: 현지식 · 석: 무제한 삼겹살</div>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num">4</div>
+      <div><h4>다낭 시내관광 · 한강유람선</h4>
+        <div class="desc">가이드 미팅 후 체크아웃 → 다낭 시내관광(영흥사·다낭대성당) → 미케비치 자유시간(음료1잔) → 쇼핑센터 방문 → 한강유람선 체험 → 공항 이동</div>
+        <div class="meals">조: 호텔식 · 중: 남힌 레스토랑(미슐랭) · 석: 한식</div>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num">5</div>
+      <div><h4>인천/청주/부산/대구 도착 및 해산</h4>
+        <div class="desc">공항 도착 후 자유 해산</div>
+        <div class="meals">조: 기내식 불포함 (아시아나항공 포함)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-air">
+    <div class="day-item">
+      <div class="day-num">1</div>
+      <div><h4>다낭 도착 → 호텔 이동</h4>
+        <div class="desc">인천/청주/부산/대구 출발 → 다낭 도착 → 차량기사 미팅 후 호텔로 이동</div>
+        <div class="meals">석: 기내식 불포함 (아시아나항공 포함)</div>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num">2 · 3</div>
+      <div><h4>전일 자유일정</h4>
+        <div class="desc">차량·기사·가이드 없이 자유롭게 리조트와 다낭을 즐기는 날이에요. 옵션 투어(바나힐·호이안·빈원더스)를 별도 신청하실 수 있어요.</div>
+        <div class="meals">조: 호텔식 · 중/석: 불포함</div>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num">4</div>
+      <div><h4>개별 체크아웃 · 공항 이동</h4>
+        <div class="desc">체크아웃 12시 이전(레이트체크아웃 18시 이전) → 다낭 국제공항으로 개별 이동 및 출발</div>
+        <div class="meals">조: 호텔식 · 중/석: 불포함</div>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-num">5</div>
+      <div><h4>인천/청주/부산/대구 도착 및 해산</h4>
+        <div class="desc">공항 도착 후 자유 해산</div>
+        <div class="meals">조: 기내식 불포함 (아시아나항공 포함)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 포함/불포함 ══════════════ -->
+<section class="wrap" id="inex">
+  <div class="eyebrow">✅ INCLUDED</div>
+  <h2 class="section-title">이 가격에, 전부 포함</h2>
+  <div class="inex-grid">
+    <div class="inex-card in">
+      <h3>✔️ 포함사항</h3>
+      <ul>
+        <li>✅ 왕복항공권, TAX 및 유류할증료 (매월 변동 가능)</li>
+        <li>✅ 인천공항세 및 현지 공항세, 전쟁보험료</li>
+        <li>✅ 전일정 호텔 숙박비 + 조식</li>
+        <li>✅ 여행자보험 (패키지 최대 1억원 / 에어텔 최대 3억원)</li>
+        <li>✅ [에어텔] 1일차 공항→호텔 편도 픽업</li>
+      </ul>
+    </div>
+    <div class="inex-card ex">
+      <h3>➖ 불포함사항</h3>
+      <ul>
+        <li>◻️ 개인경비</li>
+        <li>◻️ 매너팁 (자율 선택사항, 미지급 불이익 없음)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ══════════════ 옵션투어 (에어텔) ══════════════ -->
+<section class="wrap" id="optional">
+  <div class="eyebrow">🎟️ OPTIONAL TOUR</div>
+  <h2 class="section-title">에어텔 예약자 전용 옵션투어</h2>
+  <p class="section-sub">자유여행이지만 투어는 즐기고 싶다면 — 늘찬맘 예약자 전용 할인가예요. (성인 4명이면 조인 없이 단독 진행)</p>
+  <div class="concept-grid">
+    <div class="concept-card">
+      <h3>⛰️ 바나힐 투어</h3>
+      <p>바나힐 티켓 + 차량 10시간 + 기사 + 한국어 로컬가이드<br>성인 120,000원 · 아동 80,000원 (최소 4명)</p>
+    </div>
+    <div class="concept-card">
+      <h3>🏮 호이안 투어</h3>
+      <p>호이안 티켓 + 차량 10시간 + 기사 + 한국어 로컬가이드<br>성인·아동 동일 40,000원 (최소 4명)</p>
+    </div>
+    <div class="concept-card">
+      <h3>🎢 빈원더스 투어</h3>
+      <p>빈원더스 티켓 + 왕복차량 10시간 + 기사<br>성인 50,000원 · 아동(140cm 이하) 40,000원 (최소 4명)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 구매 전 꼭 읽어주세요 ══════════════ -->
+<section class="wrap" id="notice">
+  <div class="eyebrow">📌 NOTICE</div>
+  <h2 class="section-title">구매 전 꼭 읽어주세요</h2>
+
+  <div class="notice-box">
+    <h4>🛂 여권 · 연령 기준</h4>
+    <p>여권 만료일은 출발일 기준 6개월 이상 남아있어야 해요. (단수여권은 미사용 여권만 가능)
+소아요금(만 24개월~만 12세 미만)은 성인과 동일, 유아요금(만 24개월 미만)은 1인 50,000원이 적용돼요. (No bed, 항공좌석 없음)</p>
+  </div>
+
+  <div class="notice-box">
+    <h4>☎️ 예약 확정 안내</h4>
+    <p>본 상품은 구매 즉시 예약이 확정되지 않아요. 판매종료 후 72시간 이내 여행사 해피콜을 통해 예약확정 여부, 추가금액, 상품일정을 안내드려요. 해피콜 연결이 안되면 예약불가로 환불될 수 있으니 연락처를 꼭 확인해주세요.</p>
+  </div>
+
+  <div class="notice-box">
+    <h4>👨‍👩‍👧‍👦 최소 출발인원</h4>
+    <p>패키지 4명 / 에어텔 2명이 최소 출발 기준이에요. 인원 미충족 시 여행사는 출발 7일 전까지 계약을 해제할 수 있으며, 이 경우 여행신청금은 전액 환급돼요.</p>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-head">💳 취소 · 환불 규정 자세히 보기<span class="chev">▾</span></div>
+    <div class="accordion-body"><div class="accordion-body-inner">본 상품은 국외여행 특별약관이 적용돼요. 항공권 발권 이후 취소 시 아래 취소료 외에 항공권 취소 수수료 150,000원이 추가로 발생할 수 있어요.
+
+● 여행 취소료 규정
+- 여행개시 30일 전까지 취소 통보 시: 계약금 환급
+- 20일 전까지: 여행경비의 30% 배상
+- 10일 전까지: 여행경비의 50% 배상
+- 8일 전까지: 여행경비의 70% 배상
+- 1일 전까지: 여행경비의 90% 배상
+- 여행 당일: 여행경비의 100% 배상
+
+※ 숙박비를 출발일 기준 20일(영업일) 전에 완납 후에는 환불이 불가하여, 일반약관보다 취소료가 높게 적용돼요.
+
+● 접수 안내: 취소 접수는 영업일 기준 월~금 09:00~18:00에만 확인·적용돼요. (주말·공휴일 제외)</div></div>
+  </div>
+</section>
+
+<!-- ══════════════ FINAL CTA ══════════════ -->
+<div class="wrap">
+  <div class="footer-cta" id="cta">
+    <h2>다낭 3×3, 우리 가족도 함께 떠나볼까요?</h2>
+    <!-- ✏️ 수정: 신청 방법 안내 문구 -->
+    <p>댓글에 <b style="color:#fff;">"다낭"</b> 남겨주시면 신청 방법을 DM으로 바로 보내드려요 🌴</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://www.instagram.com/today.brighten/" target="_blank" rel="noopener" class="btn">인스타 DM으로 문의하기 →</a>
+      <a href="https://open.kakao.com/o/sfYe8qYh" target="_blank" rel="noopener" class="btn ghost">카카오톡으로 문의하기 →</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <!-- ✏️ 수정: 브랜드/저작권 문구 -->
+    ⓒ 2026 늘찬맘 · 본 상품의 계약·결제·여행약관은 협력 여행사 기준을 따릅니다
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   ✏️ 여기 아래는 캘린더 설정이에요.
+   - EXCLUDED_DATES: "9-1" 처럼 "월-일" 형식으로 적으면 그 날짜가
+     "제외일(출발 불가)"로 캘린더에 표시돼요. 필요할 때마다 추가하세요.
+   예시: const EXCLUDED_DATES = ["9-14","10-3","11-25"];
+═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   ✏️ 여기 아래는 캘린더 설정이에요.
+
+   1) PRODUCTS: 상품 탭 3개의 이름·가격·기간을 여기서 관리해요.
+      - original: 정가 / sale: 즉시할인 적용가
+      - startDay/endDay는 그 상품의 월별 출발 가능 범위예요.
+   2) EXCLUDED_DATES: "9-14" 처럼 "월-일" 형식으로 적으면
+      모든 상품 공통으로 그 날짜가 "제외일"로 표시돼요.
+   3) RESERVATION_URL: 예약 링크가 생기면 여기 한 곳만 채우면
+      모든 날짜·모든 버튼에 자동으로 적용돼요.
+═══════════════════════════════════════════════════════════ */
+const RESERVATION_URL = ""; // ✏️ 예: "https://www.modetour.com/..."
+
+const EXCLUDED_DATES = ["9-14"]; // ✏️ 제외일 추가 (예: "9-14","10-3")
+
+const PRODUCTS = {
+  package: {
+    label: "패키지",
+    name: "그랜드머큐어 다낭 패키지",
+    meta: "5성 아코르 계열 · 가이드 동반 · 3박5일",
+    original: 349000,
+    sale: 299000,
+  },
+  shilla: {
+    label: "에어텔 · 신라모노그램",
+    name: "신라모노그램 다낭 에어텔",
+    meta: "자유일정 · 4개 야외수영장 · 3박5일",
+    original: 649000,
+    sale: 599000,
+  },
+  marriott: {
+    label: "에어텔 · 메리어트 풀빌라",
+    name: "메리어트 논누억 풀빌라 에어텔",
+    meta: "자유일정 · 프라이빗 풀빌라 · 3박5일",
+    original: 749000,
+    sale: 699000,
+  },
+};
+
+const MONTHS = [
+  {label:"2026년 9월", value:"2026-9", year:2026, month:9, startDay:10, endDay:30},
+  {label:"2026년 10월", value:"2026-10", year:2026, month:10, startDay:1, endDay:31},
+  {label:"2026년 11월", value:"2026-11", year:2026, month:11, startDay:1, endDay:30},
+  {label:"2026년 12월", value:"2026-12", year:2026, month:12, startDay:1, endDay:31},
+];
+const DOW = ["일","월","화","수","목","금","토"];
+
+let activeProductKey = "package";
+let currentMonthIdx = 0;
+let selectedDate = null;
+
+function won(n){ return n.toLocaleString("ko-KR") + "원"; }
+
+function renderProdTabs(){
+  const wrap = document.getElementById("prodTabs");
+  wrap.innerHTML = "";
+  Object.entries(PRODUCTS).forEach(([key, p])=>{
+    const b = document.createElement("button");
+    b.className = "cal-tab-btn" + (key===activeProductKey ? " active" : "");
+    b.textContent = p.label;
+    b.onclick = ()=>{
+      activeProductKey = key;
+      selectedDate = null;
+      document.getElementById("reservationPanel").hidden = true;
+      renderProdTabs();
+      renderCalendar();
+    };
+    wrap.appendChild(b);
+  });
+}
+
+function renderMonthSelect(){
+  const sel = document.getElementById("calMonthSelect");
+  sel.innerHTML = "";
+  MONTHS.forEach((m,i)=>{
+    const opt = document.createElement("option");
+    opt.value = m.value;
+    opt.textContent = m.label;
+    sel.appendChild(opt);
+  });
+  sel.value = MONTHS[currentMonthIdx].value;
+}
+
+function renderCalendar(){
+  const p = PRODUCTS[activeProductKey];
+  document.getElementById("calProductTitle").textContent = p.name;
+  document.getElementById("calProductMeta").textContent = p.meta;
+
+  const m = MONTHS[currentMonthIdx];
+  renderMonthSelect();
+
+  const grid = document.getElementById("calGrid");
+  grid.innerHTML = "";
+  const firstDow = new Date(m.year, m.month-1, 1).getDay();
+  const daysInMonth = new Date(m.year, m.month, 0).getDate();
+
+  for(let i=0;i<firstDow;i++){
+    const pad = document.createElement("div");
+    pad.className = "cal-day pad";
+    grid.appendChild(pad);
+  }
+
+  for(let d=1; d<=daysInMonth; d++){
+    const cell = document.createElement("div");
+    const inRange = d>=m.startDay && d<=m.endDay;
+    const key = m.month+"-"+d;
+    const isExcluded = EXCLUDED_DATES.includes(key);
+    const isSelected = selectedDate && selectedDate.month===m.month && selectedDate.day===d;
+
+    if(!inRange){
+      cell.className = "cal-day";
+      cell.innerHTML = '<span class="d-num">'+d+'</span>';
+    } else if(isExcluded){
+      cell.className = "cal-day excluded";
+      cell.innerHTML = '<span class="d-num">'+d+'</span>';
+    } else {
+      cell.className = "cal-day avail" + (isSelected ? " selected" : "");
+      cell.innerHTML =
+        '<span class="d-num">'+d+'</span>'+
+        '<span class="d-strike">'+p.original.toLocaleString("ko-KR")+'</span>'+
+        '<span class="d-sale">'+p.sale.toLocaleString("ko-KR")+'</span>';
+      cell.onclick = ()=> selectDate(m, d);
+    }
+    grid.appendChild(cell);
+  }
+}
+
+function selectDate(m, d){
+  selectedDate = {month:m.month, day:d, year:m.year};
+  const p = PRODUCTS[activeProductKey];
+  const dow = DOW[new Date(m.year, m.month-1, d).getDay()] + "요일";
+
+  document.getElementById("rpDate").textContent = m.month + "월 " + d + "일 (" + dow + ") 출발";
+  document.getElementById("rpProduct").textContent = p.name;
+  document.getElementById("rpOriginal").textContent = won(p.original);
+  document.getElementById("rpSale").textContent = won(p.sale);
+
+  const panel = document.getElementById("reservationPanel");
+  panel.hidden = false;
+  panel.scrollIntoView({behavior:"smooth", block:"nearest"});
+
+  renderCalendar();
+}
+
+function applyReservationLink(el){
+  if(RESERVATION_URL){
+    el.href = RESERVATION_URL;
+    el.textContent = "예약하러 가기 →";
+  } else {
+    el.href = "#";
+    el.textContent = "예약 링크 준비 중이에요";
+  }
+}
+
+document.getElementById("calPrev").onclick = ()=>{
+  currentMonthIdx = Math.max(0, currentMonthIdx-1);
+  selectedDate=null; document.getElementById("reservationPanel").hidden = true;
+  renderCalendar();
+};
+document.getElementById("calNext").onclick = ()=>{
+  currentMonthIdx = Math.min(MONTHS.length-1, currentMonthIdx+1);
+  selectedDate=null; document.getElementById("reservationPanel").hidden = true;
+  renderCalendar();
+};
+document.getElementById("calMonthSelect").onchange = (e)=>{
+  currentMonthIdx = MONTHS.findIndex(m=>m.value===e.target.value);
+  selectedDate=null; document.getElementById("reservationPanel").hidden = true;
+  renderCalendar();
+};
+document.getElementById("rpClose").onclick = ()=>{
+  selectedDate = null;
+  document.getElementById("reservationPanel").hidden = true;
+  renderCalendar();
+};
+
+applyReservationLink(document.getElementById("rpReserveBtn"));
+applyReservationLink(document.getElementById("calAlwaysReserveBtn"));
+
+renderProdTabs();
+renderCalendar();
+
+/* 일정표 탭 */
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("tab-"+btn.dataset.tab).classList.add("active");
+  };
+});
+
+/* 아코디언 */
+document.querySelectorAll(".accordion-item").forEach(item=>{
+  if(item.classList.contains("always-open")) return; // 항공 스케줄은 항상 펼쳐진 상태로 고정
+  const head = item.querySelector(".accordion-head");
+  const body = item.querySelector(".accordion-body");
+  head.onclick = ()=>{
+    const isOpen = item.classList.contains("open");
+    document.querySelectorAll(".accordion-item").forEach(i=>{
+      if(i.classList.contains("always-open")) return;
+      i.classList.remove("open");
+      i.querySelector(".accordion-body").style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add("open");
+      body.style.maxHeight = body.scrollHeight + "px";
+    }
+  };
+});
+</script>
+</body>
+</html>
