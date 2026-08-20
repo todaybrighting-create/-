@@ -50,6 +50,8 @@
     font-family:'Noto Sans KR',sans-serif;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    word-break:keep-all;
+    overflow-wrap:break-word;
   }
   h1,h2,h3,.display{
     font-family:'Jua',sans-serif;
@@ -122,7 +124,7 @@
     font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;
   }
   .ticket-body{padding:22px 22px 18px;flex:1;}
-  .ticket-kicker{font-size:12px;font-weight:700;color:var(--sea);letter-spacing:.04em;margin-bottom:6px;}
+  .ticket-kicker{font-size:12px;font-weight:700;color:var(--sea);letter-spacing:.04em;margin-bottom:6px;padding-right:150px;}
   .ticket-name{font-family:'Jua',sans-serif;font-size:19px;color:var(--ocean-deep);margin-bottom:10px;line-height:1.4;}
   .ticket-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
   .ticket-tags span{font-size:11.5px;background:var(--sand);color:var(--ink-soft);padding:4px 9px;border-radius:6px;font-weight:600;}
@@ -222,12 +224,12 @@
   }
   .cal-monthnav select option{color:#1B2B30;}
 
-  .cal-dow-row{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px;}
+  .cal-dow-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-bottom:6px;}
   .cal-dow-row span{text-align:center;font-size:11.5px;color:rgba(255,255,255,0.5);font-weight:700;}
   .cal-dow-row .dow-sun{color:#FF9E8A;}
   .cal-dow-row .dow-sat{color:#8FC7E0;}
 
-  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;}
   .cal-day{
     min-height:74px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;
     font-size:12.5px;font-weight:600;cursor:default;color:rgba(255,255,255,0.2);
@@ -399,7 +401,7 @@
         <div class="ticket-body">
           <div class="ticket-kicker">AIRTEL · 신라모노그램 / 메리어트 풀빌라</div>
           <!-- ✏️ 수정: 상품명 -->
-          <div class="ticket-name">[늘찬맘전용] 다낭 에어텔 3박5일 (2종 택1)</div>
+          <div class="ticket-name">[늘찬맘전용] 다낭 에어텔 3박5일 (2종&nbsp;택1)</div>
           <div class="ticket-tags">
             <span>키즈클럽 무료</span><span>공항 편도픽업</span><span>풀빌라 옵션</span><span>2인부터 출발</span>
           </div>
@@ -731,7 +733,7 @@
         <li>✅ 왕복항공권, TAX 및 유류할증료 (매월 변동 가능)</li>
         <li>✅ 인천공항세 및 현지 공항세, 전쟁보험료</li>
         <li>✅ 전일정 호텔 숙박비 + 조식</li>
-        <li>✅ 여행자보험 (패키지 최대 1억원 / 에어텔 최대 3억원)</li>
+        <li>✅ 여행자보험 (패키지 최대 1억원 / 에어텔 최대&nbsp;3억원)</li>
         <li>✅ [에어텔] 1일차 공항→호텔 편도 픽업</li>
       </ul>
     </div>
