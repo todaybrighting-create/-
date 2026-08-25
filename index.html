@@ -286,6 +286,8 @@
   .badge.airline{background:rgba(232,183,90,.16);color:var(--gold);}
   .badge.nights{background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);}
   .card-flight{font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.6;}
+  .card-flight .route-extra{color:rgba(255,255,255,.5);}
+  @media (max-width:420px){.card-flight .route-extra{display:none;}}
   .card-flight .arrow{color:rgba(255,255,255,.35);}
   .card-price{display:flex;align-items:baseline;gap:8px;border-top:1px dashed rgba(255,255,255,.14);padding-top:9px;margin-top:2px;flex-wrap:wrap;}
   .card-price .strike{font-size:13.5px;color:rgba(255,255,255,.4);text-decoration:line-through;}
@@ -975,6 +977,34 @@ const AIRPORTS = {
   daegu:{label:"대구 출발"},
   busan:{label:"부산(김해) 출발"},
 };
+
+const AIRPORT_CITY = { incheon:"인천", cheongju:"청주", daegu:"대구", busan:"부산" };
+
+// 출발 공항별 항공 스케줄 표(아래 flight-in-cal)와 동일한 값으로 관리해요.
+// key: "공항|가는편명|숙박일수" -> {gDep:한국출발, gArr:다낭도착, bDep:다낭출발, bArr:한국도착}
+const FLIGHT_SCHEDULE = {
+  "incheon|OZ755|3박5일": {gDep:"18:50",gArr:"21:35",bDep:"23:05",bArr:"05:55"},
+  "incheon|TW013|3박5일": {gDep:"21:35",gArr:"00:25",bDep:"01:25",bArr:"08:15"},
+  "incheon|TW011|3박5일": {gDep:"19:00",gArr:"22:20",bDep:"23:35",bArr:"06:05"},
+  "incheon|7C2217|3박5일": {gDep:"21:30",gArr:"01:30",bDep:"01:30",bArr:"08:15"},
+  "incheon|ZE593|3박5일": {gDep:"20:35",gArr:"23:25",bDep:"00:25",bArr:"06:55"},
+  "incheon|RS511|3박5일": {gDep:"20:55",gArr:"23:40",bDep:"00:40",bArr:"07:15"},
+  "cheongju|RF531|3박5일": {gDep:"20:55",gArr:"23:55",bDep:"00:55",bArr:"07:10"},
+  "cheongju|TW025|3박5일": {gDep:"21:00",gArr:"23:50",bDep:"00:50",bArr:"07:35"},
+  "busan|BX773|3박5일": {gDep:"20:50",gArr:"23:50",bDep:"00:45",bArr:"07:20"},
+  "busan|BX7315|3박5일": {gDep:"22:05",gArr:"01:10",bDep:"02:10",bArr:"09:05"},
+  "busan|LJ111|3박5일": {gDep:"21:15",gArr:"23:55",bDep:"01:00",bArr:"07:15"},
+  "busan|KE2093|3박4일": {gDep:"10:30",gArr:"13:20",bDep:"15:45",bArr:"22:00"},
+  "busan|KE2093|3박5일": {gDep:"22:10",gArr:"01:00",bDep:"03:00",bArr:"09:05"},
+  "busan|VJ989|3박5일": {gDep:"07:45",gArr:"10:10",bDep:"00:30",bArr:"06:40"},
+  "daegu|TW029|3박5일": {gDep:"21:10",gArr:"23:55",bDep:"01:30",bArr:"08:15"},
+};
+
+function timeDiffMin(a, b){
+  const [ah,am] = a.split(":").map(Number);
+  const [bh,bm] = b.split(":").map(Number);
+  return Math.abs((ah*60+am) - (bh*60+bm));
+}
 
 const PRODUCTS = {
   package: { label:"패키지", name:"그랜드머큐어 다낭 패키지", meta:"5성 아코르 계열 · 가이드 동반 · 3박5일" },
@@ -3771,13 +3801,28 @@ function availableAirlines(product, airport){
   return ["ALL", ...set];
 }
 
-function cardHTML(r){
+function cardHTML(r, airport){
   const [date, dow, code, goTime, backTime, nights, orig, sale, childOrig, childSale] = r;
   const md = date.slice(5).replace("-", "/");
   const priceLine = (orig===sale)
     ? '<span class="now">'+won(sale)+'<sup>~</sup></span>'
     : '<span class="strike">'+won(orig)+'</span><span class="now">'+won(sale)+'<sup>~</sup></span>';
   const childLine = (childSale!=null) ? '<span class="child">아동 '+won(childSale)+'~</span>' : '';
+
+  const [goNum, goKTime] = goTime.split(" ");
+  const [backNum, backKTime] = backTime.split(" ");
+  const city = AIRPORT_CITY[airport] || "";
+  const sched = FLIGHT_SCHEDULE[airport+"|"+goNum+"|"+nights];
+  // 실제 이 날짜의 시간이 기준 스케줄과 90분 넘게 다르면(특가 편성 등) 다낭쪽 시간을 억지로 붙이지 않아요.
+  const goOk = sched && timeDiffMin(goKTime, sched.gDep) <= 90;
+  const backOk = sched && timeDiffMin(backKTime, sched.bArr) <= 90;
+  const goLine = goOk
+    ? goNum+" "+city+"발 "+goKTime+'<span class="route-extra"> - 다낭 '+sched.gArr+'</span>'
+    : "출발 "+goTime;
+  const backLine = backOk
+    ? backNum+" 다낭발 "+sched.bDep+'<span class="route-extra"> - '+city+' '+backKTime+'</span>'
+    : "도착 "+backTime;
+
   return '<div class="card">'+
       '<div class="card-top">'+
         '<div class="card-date">'+md+'<span class="dow">('+dow+')</span></div>'+
@@ -3786,7 +3831,7 @@ function cardHTML(r){
           '<span class="badge nights">'+nights+'</span>'+
         '</div>'+
       '</div>'+
-      '<div class="card-flight">출발 '+goTime+'<br>도착 '+backTime+'</div>'+
+      '<div class="card-flight">'+goLine+'<br>'+backLine+'</div>'+
       '<div class="card-price">'+priceLine+childLine+'</div>'+
     '</div>';
 }
@@ -3910,7 +3955,7 @@ function renderDayDetail(){
   const opts = rowsForDate(activeProductKey, activeAirport, selectedDateKey).slice().sort((a,b)=>a[7]-b[7]);
   const md = selectedDateKey.slice(5).replace("-","/");
   document.getElementById("dayDetailLabel").textContent = md + " 출발 · 옵션 " + opts.length + "건";
-  document.getElementById("dayCards").innerHTML = opts.map(cardHTML).join("");
+  document.getElementById("dayCards").innerHTML = opts.map(r=>cardHTML(r, activeAirport)).join("");
   box.scrollIntoView({behavior:"smooth", block:"nearest"});
 }
 
@@ -3937,7 +3982,7 @@ function renderModalCards(){
 
   document.getElementById("resultCount").innerHTML = "총 <b>"+rows.length+"건</b>";
   const wrap = document.getElementById("modalCards");
-  wrap.innerHTML = rows.length ? rows.map(cardHTML).join("") : '<div class="empty">해당 조건의 출발일이 없어요</div>';
+  wrap.innerHTML = rows.length ? rows.map(r=>cardHTML(r, activeAirport)).join("") : '<div class="empty">해당 조건의 출발일이 없어요</div>';
 }
 
 document.getElementById("sortSelect").onchange = (e)=>{
