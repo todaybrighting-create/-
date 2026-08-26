@@ -662,8 +662,11 @@
       <div class="cards" id="dayCards"></div>
     </div>
 
-    <!-- 날짜를 고르지 않아도 항상 보이는 예약 버튼 -->
-    <a href="#" id="calAlwaysReserveBtn" target="_blank" class="btn block" style="margin-top:18px;">예약하러 가기 →</a>
+    <!-- 날짜를 고르지 않아도 항상 보이는 예약 버튼 (패키지/에어텔 각각) -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+      <a href="#" id="calPkgReserveBtn" target="_blank" class="btn" style="flex:1;min-width:140px;">패키지 구매하기 →</a>
+      <a href="#" id="calAirtelReserveBtn" target="_blank" class="btn" style="flex:1;min-width:140px;">에어텔 구매하기 →</a>
+    </div>
     <p style="text-align:center;font-size:13px;color:rgba(255,255,255,0.45);margin-top:10px;">모든 예약과 결제는 안내드리는 예약 페이지에서 진행돼요.</p>
 
     <p style="text-align:center;font-size:13px;color:var(--gold);font-weight:700;margin-top:22px;margin-bottom:8px;">🔥 가장 빠른 공구 오픈방! 오픈 링크를 가장 먼저 받아보세요</p>
@@ -4033,11 +4036,11 @@ function closeFilterModal(){
 document.getElementById("closeFilterBtn").onclick = closeFilterModal;
 modalBackdrop.onclick = (e)=>{ if(e.target===modalBackdrop) closeFilterModal(); };
 
-function applyReservationLink(el, url){
+function applyReservationLink(el, url, openLabel){
   if(url && new Date() >= RESERVATION_OPEN_AT){
     el.href = url;
     el.target = "_blank";
-    el.textContent = "예약하러 가기 →";
+    el.textContent = openLabel;
   } else if(url){
     el.href = "#";
     el.removeAttribute("target");
@@ -4050,12 +4053,10 @@ function applyReservationLink(el, url){
 }
 
 function refreshAllReservationLinks(){
-  applyReservationLink(document.getElementById("pkgReserveBtn"), RESERVATION_URL_PACKAGE);
-  applyReservationLink(document.getElementById("airtelReserveBtn"), RESERVATION_URL_AIRTEL);
-  applyReservationLink(
-    document.getElementById("calAlwaysReserveBtn"),
-    activeProductKey === "package" ? RESERVATION_URL_PACKAGE : RESERVATION_URL_AIRTEL
-  );
+  applyReservationLink(document.getElementById("pkgReserveBtn"), RESERVATION_URL_PACKAGE, "예약하러 가기 →");
+  applyReservationLink(document.getElementById("airtelReserveBtn"), RESERVATION_URL_AIRTEL, "예약하러 가기 →");
+  applyReservationLink(document.getElementById("calPkgReserveBtn"), RESERVATION_URL_PACKAGE, "패키지 구매하기 →");
+  applyReservationLink(document.getElementById("calAirtelReserveBtn"), RESERVATION_URL_AIRTEL, "에어텔 구매하기 →");
 }
 
 document.getElementById("calPrev").onclick = ()=>{
