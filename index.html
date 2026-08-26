@@ -476,6 +476,7 @@
         </div>
         <div class="ticket-perforation"></div>
         <div class="ticket-cta"><span>즉시할인 <b>5만원</b> 적용가</span><span>최소 4명↑</span></div>
+        <a href="#" id="pkgReserveBtn" target="_blank" class="btn block" style="margin:14px 22px 20px;width:calc(100% - 44px);">예약하러 가기 →</a>
       </div>
 
       <!-- 티켓 2: 에어텔 -->
@@ -496,6 +497,7 @@
         </div>
         <div class="ticket-perforation"></div>
         <div class="ticket-cta"><span>메리어트 논누억 비치빌라 <b>579,000원~</b></span><span>최소 2명↑</span></div>
+        <a href="#" id="airtelReserveBtn" target="_blank" class="btn block" style="margin:14px 22px 20px;width:calc(100% - 44px);">예약하러 가기 →</a>
       </div>
     </div>
 
@@ -981,13 +983,14 @@
 <script>
 /* ═══════════════════════════════════════════════════════════
    ✏️ 여기 아래는 캘린더 설정이에요.
-   - RESERVATION_URL: 예약 링크가 생기면 여기 한 곳만 채우면
-     모든 버튼에 자동으로 적용돼요.
+   - RESERVATION_URL_PACKAGE / RESERVATION_URL_AIRTEL: 패키지와
+     에어텔(신라모노그램·메리어트 공통) 예약 링크가 서로 달라요.
    - DANANG_DATA: 0826 늘찬맘 다낭 세부가격표.xlsx에서 그대로
      추출한 실제 날짜별 가격이에요. 가격표가 새로 오면 이 값
      전체를 새 데이터로 교체하면 돼요 (직접 수정 X).
 ═══════════════════════════════════════════════════════════ */
-const RESERVATION_URL = "https://www.modetour.com/m-time-deal/4589"; // ✏️ 예: "https://www.modetour.com/..."
+const RESERVATION_URL_PACKAGE = "https://www.modetour.com/m-time-deal/4590";
+const RESERVATION_URL_AIRTEL = "https://www.modetour.com/m-time-deal/4589";
 const RESERVATION_OPEN_AT = new Date("2026-08-26T10:00:00+09:00"); // ✏️ 오픈 시각(한국시간). 이 시각이 지나야 버튼이 실제 링크로 바뀌어요.
 
 const AIRLINES = {
@@ -3876,6 +3879,7 @@ function renderProdTabs(){
         renderAll();
         renderAirlineChips();
         renderModalCards();
+        refreshAllReservationLinks();
       };
       el.appendChild(b);
     });
@@ -3898,6 +3902,7 @@ function renderAirportTabs(){
         renderAll();
         renderAirlineChips();
         renderModalCards();
+        refreshAllReservationLinks();
       };
       el.appendChild(b);
     });
@@ -4028,12 +4033,12 @@ function closeFilterModal(){
 document.getElementById("closeFilterBtn").onclick = closeFilterModal;
 modalBackdrop.onclick = (e)=>{ if(e.target===modalBackdrop) closeFilterModal(); };
 
-function applyReservationLink(el){
-  if(RESERVATION_URL && new Date() >= RESERVATION_OPEN_AT){
-    el.href = RESERVATION_URL;
+function applyReservationLink(el, url){
+  if(url && new Date() >= RESERVATION_OPEN_AT){
+    el.href = url;
     el.target = "_blank";
     el.textContent = "예약하러 가기 →";
-  } else if(RESERVATION_URL){
+  } else if(url){
     el.href = "#";
     el.removeAttribute("target");
     el.textContent = "8/26 오전 10시 OPEN";
@@ -4042,6 +4047,15 @@ function applyReservationLink(el){
     el.removeAttribute("target");
     el.textContent = "예약 링크 준비 중이에요";
   }
+}
+
+function refreshAllReservationLinks(){
+  applyReservationLink(document.getElementById("pkgReserveBtn"), RESERVATION_URL_PACKAGE);
+  applyReservationLink(document.getElementById("airtelReserveBtn"), RESERVATION_URL_AIRTEL);
+  applyReservationLink(
+    document.getElementById("calAlwaysReserveBtn"),
+    activeProductKey === "package" ? RESERVATION_URL_PACKAGE : RESERVATION_URL_AIRTEL
+  );
 }
 
 document.getElementById("calPrev").onclick = ()=>{
@@ -4060,8 +4074,8 @@ document.getElementById("calMonthSelect").onchange = (e)=>{
   renderCalendar();
 };
 
-applyReservationLink(document.getElementById("calAlwaysReserveBtn"));
-setInterval(()=>{ applyReservationLink(document.getElementById("calAlwaysReserveBtn")); }, 30000);
+refreshAllReservationLinks();
+setInterval(refreshAllReservationLinks, 30000);
 
 function renderAll(){
   renderProdTabs();
