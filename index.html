@@ -987,7 +987,8 @@
      추출한 실제 날짜별 가격이에요. 가격표가 새로 오면 이 값
      전체를 새 데이터로 교체하면 돼요 (직접 수정 X).
 ═══════════════════════════════════════════════════════════ */
-const RESERVATION_URL = ""; // ✏️ 예: "https://www.modetour.com/..."
+const RESERVATION_URL = "https://www.modetour.com/m-time-deal/4589"; // ✏️ 예: "https://www.modetour.com/..."
+const RESERVATION_OPEN_AT = new Date("2026-08-26T10:00:00+09:00"); // ✏️ 오픈 시각(한국시간). 이 시각이 지나야 버튼이 실제 링크로 바뀌어요.
 
 const AIRLINES = {
   "7C":"제주항공", RS:"에어서울", TW:"트리니티항공", OZ:"아시아나항공",
@@ -4028,12 +4029,18 @@ document.getElementById("closeFilterBtn").onclick = closeFilterModal;
 modalBackdrop.onclick = (e)=>{ if(e.target===modalBackdrop) closeFilterModal(); };
 
 function applyReservationLink(el){
-  if(RESERVATION_URL){
+  if(RESERVATION_URL && new Date() >= RESERVATION_OPEN_AT){
     el.href = RESERVATION_URL;
+    el.target = "_blank";
     el.textContent = "예약하러 가기 →";
+  } else if(RESERVATION_URL){
+    el.href = "#";
+    el.removeAttribute("target");
+    el.textContent = "8/26 오전 10시 OPEN";
   } else {
     el.href = "#";
-    el.textContent = "8/26 오전 10시 OPEN";
+    el.removeAttribute("target");
+    el.textContent = "예약 링크 준비 중이에요";
   }
 }
 
@@ -4054,6 +4061,7 @@ document.getElementById("calMonthSelect").onchange = (e)=>{
 };
 
 applyReservationLink(document.getElementById("calAlwaysReserveBtn"));
+setInterval(()=>{ applyReservationLink(document.getElementById("calAlwaysReserveBtn")); }, 30000);
 
 function renderAll(){
   renderProdTabs();
