@@ -72,11 +72,12 @@
   .section-sub{color:var(--ink-soft);font-size:17px;margin-bottom:32px;}
 
   /* ---------- URGENCY BANNER ---------- */
+  .sticky-header{position:sticky;top:0;z-index:60;}
   .urgency-banner{
     background:linear-gradient(90deg,var(--coral-deep),var(--coral));
     color:#fff;padding:10px 16px;
     display:flex;align-items:center;justify-content:center;gap:10px;
-    font-size:13.5px;font-weight:700;text-align:center;
+    font-size:13.5px;font-weight:700;text-align:center;line-height:1.5;
   }
   .urgency-banner .pulse{display:inline-block;animation:urgencyPulse 1.3s ease-in-out infinite;}
   @media (prefers-reduced-motion:reduce){.urgency-banner .pulse{animation:none;}}
@@ -89,7 +90,6 @@
 
   /* ---------- NAV ---------- */
   nav{
-    position:sticky;top:0;z-index:50;
     background:rgba(255,252,247,0.92);backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -445,26 +445,28 @@
 </head>
 <body>
 
-<!-- ══════════════ 긴급 배너 ══════════════ -->
-<div class="urgency-banner" id="urgencyBanner">
-  <span><span class="pulse">🔥</span> 즉시할인 5만원 쿠폰 소진임박! 선착순 100명 마감 전에 서둘러주세요</span>
-  <button type="button" id="urgencyCloseBtn" aria-label="배너 닫기">✕</button>
-</div>
-
-<!-- ══════════════ NAV ══════════════ -->
-<nav>
-  <div class="wrap">
-    <div class="brand">늘찬맘 다낭<small>DA NANG · GROUP BUY</small></div>
-    <div class="navlinks">
-      <a href="#compare">가격비교</a>
-      <a href="#calendar">출발일정</a>
-      <a href="#itinerary">일정표</a>
-      <a href="#inex">포함사항</a>
-      <a href="#notice">유의사항</a>
-      <a href="#cta">신청하기</a>
-    </div>
+<div class="sticky-header">
+  <!-- ══════════════ 긴급 배너 ══════════════ -->
+  <div class="urgency-banner" id="urgencyBanner">
+    <span><span class="pulse">🔥</span> 즉시할인 5만원 쿠폰 소진임박!<br>선착순 100명 마감 전에 서둘러주세요</span>
+    <button type="button" id="urgencyCloseBtn" aria-label="배너 닫기">✕</button>
   </div>
-</nav>
+
+  <!-- ══════════════ NAV ══════════════ -->
+  <nav>
+    <div class="wrap">
+      <div class="brand">늘찬맘 다낭<small>DA NANG · GROUP BUY</small></div>
+      <div class="navlinks">
+        <a href="#compare">가격비교</a>
+        <a href="#calendar">출발일정</a>
+        <a href="#itinerary">일정표</a>
+        <a href="#inex">포함사항</a>
+        <a href="#notice">유의사항</a>
+        <a href="#cta">신청하기</a>
+      </div>
+    </div>
+  </nav>
+</div>
 
 <!-- ══════════════ HERO ══════════════ -->
 <header class="hero">
