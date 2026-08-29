@@ -1019,6 +1019,7 @@
 const RESERVATION_URL_PACKAGE = "https://www.modetour.com/m-time-deal/4590";
 const RESERVATION_URL_AIRTEL = "https://www.modetour.com/m-time-deal/4589";
 const RESERVATION_OPEN_AT = new Date("2026-08-26T10:00:00+09:00"); // ✏️ 오픈 시각(한국시간). 이 시각이 지나야 버튼이 실제 링크로 바뀌어요.
+const RESERVATION_CLOSED = true; // ✏️ 예약이 마감되면 true로. 모든 예약 버튼이 "예약마감"으로 바뀌어요.
 
 const AIRLINES = {
   "7C":"제주항공", RS:"에어서울", TW:"트리니티항공", OZ:"아시아나항공",
@@ -4061,6 +4062,15 @@ document.getElementById("closeFilterBtn").onclick = closeFilterModal;
 modalBackdrop.onclick = (e)=>{ if(e.target===modalBackdrop) closeFilterModal(); };
 
 function applyReservationLink(el, url, openLabel){
+  if(RESERVATION_CLOSED){
+    el.href = "#";
+    el.removeAttribute("target");
+    el.textContent = "예약마감";
+    el.style.opacity = "0.5";
+    el.style.pointerEvents = "none";
+    el.style.boxShadow = "none";
+    return;
+  }
   if(url && new Date() >= RESERVATION_OPEN_AT){
     el.href = url;
     el.target = "_blank";
